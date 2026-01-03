@@ -14,4 +14,14 @@ class Category
         protected string $description = '',
         protected bool $isActive = true,
     ) {}
+
+    public function activate(): void
+    {
+        $this->isActive = true;
+    }
+
+    public function deactivate(): void
+    {
+        $this->isActive = false;
+    }
 }
