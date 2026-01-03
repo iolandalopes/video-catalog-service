@@ -11,12 +11,12 @@ class CategoryTest extends TestCase
     {
         $category = new Category(
             id: 'cat123',
-            name: 'Books',
+            name: 'Action',
             description: 'Category for all book products',
             isActive: true,
         );
 
-        $this->assertEquals('Books', $category->name);
+        $this->assertEquals('Action', $category->name);
         $this->assertEquals('Category for all book products', $category->description);
         $this->assertEquals(true, $category->isActive);
     }
@@ -25,7 +25,7 @@ class CategoryTest extends TestCase
     {
         $category = new Category(
             id: 'cat124',
-            name: 'Electronics',
+            name: 'Comedy',
             isActive: false,
         );
 
@@ -37,11 +37,27 @@ class CategoryTest extends TestCase
     {
         $category = new Category(
             id: 'cat124',
-            name: 'Electronics',
+            name: 'Comedy',
             isActive: true,
         );
 
         $category->deactivate();
         $this->assertFalse($category->isActive);
+    }
+
+    public function testUpdateEntity(): void
+    {
+        $category = new Category(
+            id: 'cat125',
+            name: 'Comedics',
+            description: 'Category for clothing products',
+            isActive: true,
+        );
+
+        $category->update('Science fiction', 'Updated description for apparel products');
+
+        $this->assertEquals('Science fiction', $category->name);
+        $this->assertEquals('Updated description for apparel products', $category->description);
+        $this->assertTrue($category->isActive);
     }
 }
